@@ -11,11 +11,11 @@ public class Hangman {
 		introduceGame();
 		char userChoice = displayMenu().charAt(0);
 		String wordToGuess = executeGameStart(userChoice);
-		String display = "";
+		String wordDisplay = "";
 		for (int i = 0; i < wordToGuess.length(); i++) {
-			display += "_";
+			wordDisplay += "_";
 		}
-		executeGameFlow(wordToGuess, display);
+		executeGameFlow(wordToGuess, wordDisplay);
 	}
 
 	public static void displayGuess(String currWord, String currDisplay) {
@@ -104,12 +104,12 @@ public class Hangman {
 	}
 
 	public static void executeGameFlow(String wordToGuess, String display) {
+		System.out.println("Now executing game flow");
 		displayGuess(wordToGuess, display);
 		char letterGuessed;
-		/*
 		do {
 			letterGuessed = JOptionPane.showInputDialog("Please enter an alphabet to guess: ").toLowerCase().charAt(0);
-		} while (letterGuessed < 'a' || letterGuessed > 'z');
+		} while (letterGuessed < 'a' || letterGuessed > 'z'); /*
 		String newDisplay = "";
 		for (int i = 0; i < wordToGuess.length; i++) {
 			if (wordToGuess.charAt(i) == letterGuessed) {
