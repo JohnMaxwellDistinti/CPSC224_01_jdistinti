@@ -15,7 +15,7 @@ public class Hangman {
 		for (int i = 0; i < wordToGuess.length(); i++) {
 			wordDisplay += "_";
 		}
-		executeGameFlow(wordToGuess, wordDisplay);
+		executeGameFlow(wordToGuess, wordDisplay, 6);
 	}
 
 	public static void displayGuess(String currWord, String currDisplay) {
@@ -98,17 +98,17 @@ public class Hangman {
 	}
 
 	public static String playGameUserWord() {
-		Scanner sc = new Scanner(System.in);
 		String wordToGuess = JOptionPane.showInputDialog("Please enter a word for someone else to guess");
-		return wordToGuess;
+		return wordToGuess.toLowerCase();
 	}
 
-	public static void executeGameFlow(String wordToGuess, String wordDisplay) {
+	public static void executeGameFlow(String wordToGuess, String wordDisplay, int strikesLeft) {
 		System.out.println("Now executing game flow");
+		displayMan(true, true, true, true, true, true);
+		displayGuess(wordToGuess, wordDisplay);
 		if (!wordDisplay.contains("_")) {
 			return;
 		}
-		displayGuess(wordToGuess, wordDisplay);
 		char letterGuessed;
 		do {
 			letterGuessed = JOptionPane.showInputDialog("Please enter an alphabet to guess: ").toLowerCase().charAt(0);
@@ -125,6 +125,6 @@ public class Hangman {
 				newDisplay += wordDisplay.charAt(i);
 			}
 		}
-		executeGameFlow(wordToGuess, newDisplay);
+		executeGameFlow(wordToGuess, newDisplay, strikesLeft);
 	}
 }
