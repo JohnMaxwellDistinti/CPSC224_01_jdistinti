@@ -103,21 +103,28 @@ public class Hangman {
 		return wordToGuess;
 	}
 
-	public static void executeGameFlow(String wordToGuess, String display) {
+	public static void executeGameFlow(String wordToGuess, String wordDisplay) {
 		System.out.println("Now executing game flow");
-		displayGuess(wordToGuess, display);
+		if (!wordDisplay.contains("_")) {
+			return;
+		}
+		displayGuess(wordToGuess, wordDisplay);
 		char letterGuessed;
 		do {
 			letterGuessed = JOptionPane.showInputDialog("Please enter an alphabet to guess: ").toLowerCase().charAt(0);
-		} while (letterGuessed < 'a' || letterGuessed > 'z'); /*
+		} while (letterGuessed < 'a' || letterGuessed > 'z');
 		String newDisplay = "";
-		for (int i = 0; i < wordToGuess.length; i++) {
-			if (wordToGuess.charAt(i) == letterGuessed) {
-				newDisplay += letterGuessed;
+		for (int i = 0; i < wordToGuess.length(); i++) {
+			if (wordDisplay.charAt(i) == '_') {
+				if (wordToGuess.charAt(i) == letterGuessed) {
+					newDisplay += letterGuessed;
+				} else {
+					newDisplay += '_';
+				}
 			} else {
-				newDisplay += "_";
+				newDisplay += wordDisplay.charAt(i);
 			}
 		}
-		displayGuess(wordToGuess, newDisplay);*/
+		executeGameFlow(wordToGuess, newDisplay);
 	}
 }
