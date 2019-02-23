@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class ButtonPanel {
+public class ButtonPanel extends JPanel {
+	
+	private ControlPanel controls;
 
 	private static int[][] winCombinations = new int[][] {
 			{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, //horizontal wins
@@ -14,38 +16,30 @@ public class ButtonPanel {
 	};
 	
 	private static JButton buttons[] = new JButton[9]; //create 9 buttons
-
-
-
-	public static void main (String[] args)
-	{
-		gamePanel(); //launch game
-	}
 	
-	private static void gamePanel(){
-		JFrame frame = new JFrame ("Tic Tac Toe");
-		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+	public ButtonPanel(){
+		//JFrame frame = new JFrame ("Tic Tac Toe");
+		//frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
+		controls = new ControlPanel();
 
 		JPanel panel = new JPanel(); //creating a panel with a box like a tic tac toe board
 		panel.setLayout (new GridLayout (3, 3));
-		panel.setBorder (BorderFactory.createTitledBorder(""));
-		panel.setBackground (Color.white);
+		//panel.setBorder (BorderFactory.createTitledBorder(""));
+		//panel.setBackground (Color.white);
 
 		for(int i=0; i<=8; i++){ //placing the button onto the board
 			buttons[i] = new MyButton();
-			panel.add(buttons[i]);			
+			panel.add(buttons[i]);
 		}
-
-		frame.getContentPane().add (panel);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setSize(500, 500);// set frame size and let teh game begin
+		
+		add(panel);
+		add(controls, BorderLayout.SOUTH);
 	}
 
 	public static int xOrO=0; // used for counting
 
-	private static class MyButton extends JButton 
+	private static class MyButton extends JButton
 	implements ActionListener {//creating own button class because JButton sucks:)
 		
 		int again=1000;//set again at 1000 so we don't make the mistake we can play again
@@ -56,6 +50,7 @@ public class ButtonPanel {
 			letter=" ";
 			setFont(new Font("Dialog", 1, 60));
 			setText(letter);
+			setPreferredSize(new Dimension(155, 100));
 			addActionListener(this);
 		}
 		public void actionPerformed(ActionEvent e) { // placing x or o's
@@ -88,8 +83,7 @@ public class ButtonPanel {
 				win=true;
 			}	
 			
-			if(again==JOptionPane.YES_OPTION && win==true){ // if the user want to play again clear all the button and start over
-					clearButtons();			
+			if(again==JOptionPane.YES_OPTION && win==true){ // if the user want to play again clear all the button and start over		
 					win=false;
 			}
 			else if(again==JOptionPane.NO_OPTION){
@@ -101,15 +95,6 @@ public class ButtonPanel {
 
 		}
 
-	}
-	
-	public static void clearButtons(){
-		
-		for(int i=0; i<=8; i++){// clear all 8 buttons
-			buttons[i].setText(" ");						
-		}
-		xOrO=0; // reset the count
-		
 	}
 
 }

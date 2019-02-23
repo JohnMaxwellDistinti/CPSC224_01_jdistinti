@@ -15,6 +15,7 @@ public class OrderCalculatorGUI extends JFrame
    private ToppingPanel toppings; // Topping panel
    private CoffeePanel coffee;    // Coffee panel
    private GreetingPanel banner;  // To display a greeting
+   private ButtonPanel tictactoe;
    private DisplayTurn displayName;
    private ButtonPanel game;
    private JPanel buttonPanel;    // To hold the buttons
@@ -43,6 +44,7 @@ public class OrderCalculatorGUI extends JFrame
       // Create the custom panels.
       bagels = new BagelPanel();
       displayName = new DisplayTurn();
+      tictactoe = new ButtonPanel();
       //toppings = new ToppingPanel();
       //coffee = new CoffeePanel();
       //game = new ButtonPanel();
@@ -54,7 +56,7 @@ public class OrderCalculatorGUI extends JFrame
       add(bagels, BorderLayout.NORTH);
       //add(coffee, BorderLayout.NORTH);
       //add(toppings, BorderLayout.CENTER);
-      //add(game, BorderLayout.CENTER);
+      add(tictactoe, BorderLayout.CENTER);
       add(displayName, BorderLayout.SOUTH);
 
       // Pack the contents of the window and display it.
