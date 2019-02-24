@@ -27,7 +27,7 @@ public class ButtonPanel extends JPanel {
 		//panel.setBorder (BorderFactory.createTitledBorder(""));
 		//panel.setBackground (Color.white);
 
-		for (int i = 0; i <= 8; i++){ //placing the button onto the board
+		for (int i = 0; i <= 8; i++) { //placing the button onto the board
 			buttons[i] = new MyButton();
 			panel.add(buttons[i]);
 		}
@@ -65,7 +65,7 @@ public class ButtonPanel extends JPanel {
 			for (int i = 0; i <= 7; i++) { // check for the winning combinations
 				if (buttons[winCombinations[i][0]].getText().equals(buttons[winCombinations[i][1]].getText()) && 
 					buttons[winCombinations[i][1]].getText().equals(buttons[winCombinations[i][2]].getText()) && 
-					buttons[winCombinations[i][0]].getText() != " "){//the winning is true
+					buttons[winCombinations[i][0]].getText() != " ") {//the winning is true
 					win = true;
 				}
 			}
@@ -75,10 +75,10 @@ public class ButtonPanel extends JPanel {
 				again=JOptionPane.showConfirmDialog(null, "The game was tie!  Do you want to play again?","Tie game!",JOptionPane.YES_NO_OPTION);
 				win=true;
 			}	
-			if (again==JOptionPane.YES_OPTION && win==true) { // if the user want to play again clear all the button and start over		
-					win=false;
+			if (again == JOptionPane.YES_OPTION && win == true) { // if the user want to play again clear all the button and start over		
+					win = false;
 			}
-			else if (again==JOptionPane.NO_OPTION) {
+			else if (again == JOptionPane.NO_OPTION) {
 				System.exit(0); // exit game if the user do not want to play again
 			}
 		}
