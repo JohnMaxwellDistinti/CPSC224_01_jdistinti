@@ -82,5 +82,48 @@ public class ButtonPanel extends JPanel {
 				System.exit(0); // exit game if the user do not want to play again
 			}
 		}
+
+		private class ControlPanel extends JPanel {
+			public JButton newGame;
+			public JButton reset;
+			public JButton exit;
+			public ControlPanel() {
+				setLayout(new GridLayout(1, 3));
+				newGame = new JButton();
+				reset = new JButton();
+				exit = new JButton();      
+				newGame.setText("New Games");
+				reset.setText("Resets");
+				exit.setText("Exits");  
+				exit.addActionListener(new ExitButtonListener());
+				reset.addActionListener(new ResetButtonListener());
+				add(newGame);
+				add(reset);
+				add(exit);
+			}
+		
+			private class NewGameButtonListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+					  System.exit(0);
+				}
+			}
+		
+			private class ResetButtonListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+					/*
+					for (int i = 0; i < buttons.length; i++) {
+						buttons[i].setText("J");
+					}*/
+				}
+			 }
+		
+			private class ExitButtonListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			}
+			   
+		}
 	}
 }

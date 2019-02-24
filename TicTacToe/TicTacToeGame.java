@@ -13,7 +13,7 @@ public class TicTacToeGame extends JFrame {
 
    public TicTacToeGame() {
       // Display a title.
-      setTitle("Tic Tac Toe");
+      setTitle("Tic Tac Toes");
       // Specify an action for the close button.
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       // Create a BorderLayout manager.
@@ -34,11 +34,6 @@ public class TicTacToeGame extends JFrame {
       setVisible(true);
    }
 
-   private class ExitButtonListener implements ActionListener {
-      public void actionPerformed(ActionEvent e) {
-         System.exit(0);
-      }
-   }
    public static void main(String[] args) {
       new TicTacToeGame();
    }
