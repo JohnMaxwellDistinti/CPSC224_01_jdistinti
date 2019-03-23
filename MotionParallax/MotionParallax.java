@@ -85,12 +85,20 @@ public class MotionParallax extends JFrame
       int foliageSize = 115;
       Color skyColor = new Color(33, 192, 237);
       Color sunColor = new Color(255,255,0);
-      Color mountainOneColor = new Color(255, 163, 242);
+      Color mountainLeftColor = new Color(255, 163, 242);
+      Color mountainRightColor = new Color(178, 255, 163);
+      Color mountainBackColor = new Color(231, 56, 255);
       Color grassColor = new Color(46,198,25);
       Color treeColor = new Color(46, 100, 25);
       Color barkColor = new Color(66, 39, 39);
-      int xValues[] = {10, 225, 440};
-	   int yValues[] = {575, 250, 575};
+      int mountainLeftXValues[] = {-40, 225, 490};
+      int mountainLeftYValues[] = {575, 300, 575};
+
+      int mountainRightXValues[] = {210, 475, 740};
+      int mountainRightYValues[] = {575, 300, 575};
+
+      int mountainBackXValues[] = {100, 350, 600};
+      int mountainBackYValues[] = {575, 150, 575};
 	   int points = 3;
       
       
@@ -99,9 +107,20 @@ public class MotionParallax extends JFrame
       
       g.setColor(sunColor);
       g.fillOval(550, 50, 100, 100);
+
+   
+      // Back Mountain
+      g.setColor(mountainBackColor);
+      g.fillPolygon(mountainBackXValues, mountainBackYValues, points);
+
+      // Right Mountain
+      g.setColor(mountainRightColor);
+      g.fillPolygon(mountainRightXValues, mountainRightYValues, points);
       
-      g.setColor(mountainOneColor);
-      g.fillPolygon(xValues, yValues, points);
+      
+      // Left Mountain
+      g.setColor(mountainLeftColor);
+      g.fillPolygon(mountainLeftXValues, mountainLeftYValues, points);
       
       g.setColor(grassColor);
       g.fillRect(-500, WINDOW_HEIGHT-grassHeight, grassWidth, grassHeight);
