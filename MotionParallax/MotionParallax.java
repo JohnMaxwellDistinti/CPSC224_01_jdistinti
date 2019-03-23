@@ -106,9 +106,8 @@ public class MotionParallax extends JFrame {
       g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
       
       g.setColor(sunColor);
-      g.fillOval(550, 50, 100, 100);
+      g.fillOval(550+(currentX/50), 50+(currentY/50), 100, 100);
 
-   
       // Back Mountain
       g.setColor(mountainBackColor);
       g.fillPolygon(mountainBackXValues, mountainBackYValues, points);
@@ -135,9 +134,9 @@ public class MotionParallax extends JFrame {
    private class MyMouseListener implements MouseListener {
       public void mousePressed(MouseEvent e) {
          // Get the mouse cursor coordinates.
-         currentX = e.getX();
+         /*currentX = e.getX();
          currentY = e.getY();
-         System.out.printf("(x = %d, y = %d)\n", currentX, currentY);
+         System.out.printf("(x = %d, y = %d)\n", currentX, currentY);*/
       }
 
       public void mouseClicked(MouseEvent e) {
@@ -163,7 +162,9 @@ public class MotionParallax extends JFrame {
       }
 
       public void mouseMoved(MouseEvent e) {
-               
+    	  currentX = e.getX();
+    	  currentY = e.getY();
+    	  repaint();
       }
    }
    public static void main(String[] args)
