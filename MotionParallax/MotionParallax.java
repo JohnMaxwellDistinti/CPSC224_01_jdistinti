@@ -91,14 +91,14 @@ public class MotionParallax extends JFrame
       Color grassColor = new Color(46,198,25);
       Color treeColor = new Color(46, 100, 25);
       Color barkColor = new Color(66, 39, 39);
-      int mountainLeftXValues[] = {-40, 225, 490};
+      int mountainLeftXValues[] = {-90, 175, 440};
       int mountainLeftYValues[] = {575, 300, 575};
 
-      int mountainRightXValues[] = {210, 475, 740};
+      int mountainRightXValues[] = {260, 525, 790};
       int mountainRightYValues[] = {575, 300, 575};
 
       int mountainBackXValues[] = {100, 350, 600};
-      int mountainBackYValues[] = {575, 150, 575};
+      int mountainBackYValues[] = {575, 200, 575};
 	   int points = 3;
       
       
