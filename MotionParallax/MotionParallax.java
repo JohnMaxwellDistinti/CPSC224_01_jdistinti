@@ -20,7 +20,7 @@ public class MotionParallax extends JFrame
    private JPanel grassPanel;     // To hold the labeln
    private JPanel skyboxPanel;     // To hold the label
    private JLabel grassLabel;     // To show an image
-   private JLabel skyLabel;     // To show an image
+   private JLabel skyboxLabel;     // To show an image
    private int WINDOW_WIDTH = 700;
    private int WINDOW_HEIGHT = 700;
 
@@ -41,22 +41,21 @@ public class MotionParallax extends JFrame
       setLayout(new BorderLayout());
 
       // Build the panels.
-      buildLandscapePanels();
       
-      grassPanel = new JPanel();
-      grassLabel = new JLabel("");
+      //grassPanel = new JPanel();
+      //grassLabel = new JLabel("");
 
       // Add the panels to the content pane.
-      add(grassPanel, BorderLayout.SOUTH);
+      //add(grassPanel, BorderLayout.SOUTH);
       
-      grassPanel.add(grassLabel);
-
+      //grassPanel.add(grassLabel);
+      
       // Read the image file into an ImageIcon object.
-      ImageIcon landscape = new ImageIcon("nicelandscape.png");
+      //ImageIcon landscape = new ImageIcon("nicelandscape.png");
       
       // Display the image in the label.
-      grassLabel.setIcon(landscape);
-      grassLabel.setText(null);
+      //grassLabel.setIcon(landscape);
+      //grassLabel.setText(null);
 
       // Pack the frame again to accomodate the 
       // new size of the label.
@@ -69,24 +68,38 @@ public class MotionParallax extends JFrame
       The buildImagePanel method adds a label to a panel.
    */
 
-   private void buildLandscapePanels()
+   public void paint(Graphics g)
    {
-      /*// Create a panel.
-      grassPanel = new JPanel();
+      // Call the superclass's paint method.
+      super.paint(g);
+      
 
-      // Create a label.
-      grassLabel = new JLabel("");
+      // Draw a rectangle
+      int grassWidth = 1000;
+      int grassHeight = 150;
+      int treeHeight = 150;
+      int foliageSize = 115;
+      Color skyColor = new Color(33, 192, 237);
+      Color sunColor = new Color(255,255,0);
+      Color grassColor = new Color(46,198,25);
+      Color treeColor = new Color(46, 100, 25);
+      Color barkColor = new Color(66, 39, 39);
       
-      // Add the label to the panel.
-      grassPanel.add(grassLabel);
-      //dicePanel1.add(imageLabel);
+      g.setColor(skyColor);
+      g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
       
-      ImageIcon firstDie = new ImageIcon("Die1.png");
-      ImageIcon secondDie = new ImageIcon("Die2.png");
-      .setIcon(firstDie);
-      imageLabel0.setText(null);
-      imageLabel1.setIcon(secondDie);
-      imageLabel1.setText(null);*/
+      g.setColor(sunColor);
+      g.fillOval(550, 50, 100, 100);
+      
+      g.setColor(grassColor);
+      g.fillRect(0, WINDOW_HEIGHT-grassHeight, grassWidth, grassHeight);
+      
+      g.setColor(barkColor);
+      g.fillRect(475,500,20,treeHeight);
+      
+      g.setColor(treeColor);
+      g.fillOval(427, WINDOW_HEIGHT-treeHeight-foliageSize, foliageSize, foliageSize+25);	
+      
    }
 
    /**
