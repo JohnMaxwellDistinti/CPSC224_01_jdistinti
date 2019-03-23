@@ -15,8 +15,7 @@ import javax.swing.*;
    and a JLabel to display an image.
 */
 
-public class MotionParallax extends JFrame
-{
+public class MotionParallax extends JFrame {
    private JPanel grassPanel;     // To hold the labeln
    private JPanel skyboxPanel;     // To hold the label
    private JLabel grassLabel;     // To show an image
@@ -31,8 +30,7 @@ public class MotionParallax extends JFrame
       Constructor
    */
 
-   public MotionParallax()
-   {
+   public MotionParallax() {
       // Set the title.
       setTitle("Motion Parallax");
 
@@ -42,7 +40,9 @@ public class MotionParallax extends JFrame
       // Create a BorderLayout manager.
       setLayout(new BorderLayout());
 
+      // adding both mouse listeners
       addMouseListener(new MyMouseListener());
+      addMouseMotionListener(new MyMouseMotionListener());
 
       // Build the panels.
       
@@ -117,7 +117,6 @@ public class MotionParallax extends JFrame
       g.setColor(mountainRightColor);
       g.fillPolygon(mountainRightXValues, mountainRightYValues, points);
       
-      
       // Left Mountain
       g.setColor(mountainLeftColor);
       g.fillPolygon(mountainLeftXValues, mountainLeftYValues, points);
@@ -135,10 +134,10 @@ public class MotionParallax extends JFrame
 
    private class MyMouseListener implements MouseListener {
       public void mousePressed(MouseEvent e) {
-          // Get the mouse cursor coordinates.
-          currentX = e.getX();
-          currentY = e.getY();
-          System.out.printf("(x = %d, y = %d)\n", currentX, currentY);
+         // Get the mouse cursor coordinates.
+         currentX = e.getX();
+         currentY = e.getY();
+         System.out.printf("(x = %d, y = %d)\n", currentX, currentY);
       }
 
       public void mouseClicked(MouseEvent e) {
@@ -156,25 +155,17 @@ public class MotionParallax extends JFrame
       public void mouseExited(MouseEvent e) {
 
       }
-  }
+   }
 
-   /**
-      Private inner class that handles the event when
-      the user clicks the button.
-   */
+   private class MyMouseMotionListener implements MouseMotionListener {
+      public void mouseDragged(MouseEvent e) {
+         
+      }
 
-   private class ButtonListener implements ActionListener
-   {
-      public void actionPerformed(ActionEvent e)
-      {
+      public void mouseMoved(MouseEvent e) {
+               
       }
    }
-   
-   /**
-      The main method creates an instance of the
-      MyCatImage class which causes it to display
-      its window.
-   */
    public static void main(String[] args)
    {
       new MotionParallax();
