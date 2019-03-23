@@ -23,6 +23,8 @@ public class MotionParallax extends JFrame
    private JLabel skyboxLabel;     // To show an image
    private int WINDOW_WIDTH = 700;
    private int WINDOW_HEIGHT = 700;
+   private int currentX = 0;
+   private int currentY = 0;
 
 
    /**
@@ -39,6 +41,8 @@ public class MotionParallax extends JFrame
 
       // Create a BorderLayout manager.
       setLayout(new BorderLayout());
+
+      addMouseListener(new MyMouseListener());
 
       // Build the panels.
       
@@ -85,9 +89,9 @@ public class MotionParallax extends JFrame
       Color grassColor = new Color(46,198,25);
       Color treeColor = new Color(46, 100, 25);
       Color barkColor = new Color(66, 39, 39);
-      int xValues[] = {100, 150, 50};
-	  int yValues[] = {100, 150, 150};
-	  int points = 3;
+      int xValues[] = {10, 225, 440};
+	   int yValues[] = {575, 250, 575};
+	   int points = 3;
       
       
       g.setColor(skyColor);
@@ -109,6 +113,31 @@ public class MotionParallax extends JFrame
       g.fillOval(427, WINDOW_HEIGHT-treeHeight-foliageSize, foliageSize, foliageSize+25);	
       
    }
+
+   private class MyMouseListener implements MouseListener {
+      public void mousePressed(MouseEvent e) {
+          // Get the mouse cursor coordinates.
+          currentX = e.getX();
+          currentY = e.getY();
+          System.out.printf("(x = %d, y = %d)\n", currentX, currentY);
+      }
+
+      public void mouseClicked(MouseEvent e) {
+
+      }
+
+      public void mouseReleased(MouseEvent e) {
+
+      }
+
+      public void mouseEntered(MouseEvent e) {
+
+      }
+
+      public void mouseExited(MouseEvent e) {
+
+      }
+  }
 
    /**
       Private inner class that handles the event when
