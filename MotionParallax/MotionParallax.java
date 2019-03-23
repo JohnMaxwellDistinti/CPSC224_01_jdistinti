@@ -4,6 +4,8 @@ Due Date: 3/23/19
 Names: John Maxwell Distinti
 ********************/
 
+import java.util.concurrent.TimeUnit;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -16,6 +18,8 @@ import javax.swing.*;
 */
 
 public class MotionParallax extends JFrame {
+   private int delay = 30;
+   private Timer timer;
    private JPanel grassPanel;     // To hold the labeln
    private JPanel skyboxPanel;     // To hold the label
    private JLabel grassLabel;     // To show an image
@@ -24,13 +28,9 @@ public class MotionParallax extends JFrame {
    private int WINDOW_HEIGHT = 700;
    private int currentX = 0;
    private int currentY = 0;
+   
 
-
-   /**
-      Constructor
-   */
-
-   public MotionParallax() {
+   public MotionParallax(){
       // Set the title.
       setTitle("Motion Parallax");
 
@@ -162,8 +162,13 @@ public class MotionParallax extends JFrame {
       }
 
       public void mouseMoved(MouseEvent e) {
-    	  currentX = e.getX();
-    	  currentY = e.getY();
+    	  currentX = e.getX() + (WINDOW_WIDTH/2);
+    	  currentY = e.getY() + (WINDOW_HEIGHT/2);
+    	  try {
+			TimeUnit.MILLISECONDS.sleep(15);
+    	  } catch (InterruptedException e1) {
+			e1.printStackTrace();
+    	  }
     	  repaint();
       }
    }
