@@ -80,7 +80,7 @@ public class MotionParallax extends JFrame
 
       // Draw a rectangle
       int grassWidth = 2000;
-      int grassHeight = 150;
+      int grassHeight = 300;
       int treeHeight = 150;
       int foliageSize = 115;
       Color skyColor = new Color(33, 192, 237);
@@ -123,7 +123,7 @@ public class MotionParallax extends JFrame
       g.fillPolygon(mountainLeftXValues, mountainLeftYValues, points);
       
       g.setColor(grassColor);
-      g.fillRect(-500, WINDOW_HEIGHT-grassHeight, grassWidth, grassHeight);
+      g.fillRect(-500, WINDOW_HEIGHT-(grassHeight/2), grassWidth, grassHeight);
       
       g.setColor(barkColor);
       g.fillRect(475,500,20,treeHeight);
