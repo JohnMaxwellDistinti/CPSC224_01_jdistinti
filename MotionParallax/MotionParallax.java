@@ -20,10 +20,10 @@ import javax.swing.*;
 public class MotionParallax extends JFrame {
 	
    private int sunParallax = 350;
-   private int mountainBackParallax = 300;
-   private int mountainRightParallax = 200;
-   private int mountainLeftParallax = 100;
-   private int landscapeParallax = 15;
+   private int mountainBackParallax = 140;
+   private int mountainRightParallax = 95;
+   private int mountainLeftParallax = 50;
+   private int landscapeParallax = 5;
    
    private int delay = 30;
    private Timer timer;
