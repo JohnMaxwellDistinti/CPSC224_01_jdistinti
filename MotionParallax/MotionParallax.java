@@ -17,7 +17,7 @@ import javax.swing.*;
    and a JLabel to display an image.
 */
 
-public class MotionParallax extends JFrame {
+public class MotionParallax extends JFrame implements ActionListener {
    
    // represents parallax values of each aspect of the graphic
    // the farther away the object in the frame, the larger the 
@@ -44,6 +44,8 @@ public class MotionParallax extends JFrame {
    // wing, middle of the bird, and the right wing respectively. The last 2 elements refer to the min and max
    // y coordinate of the bird (respectively).
    private int [][]birds = {{80, 85, 90, 180, 185}, {95, 100, 105, 190, 195}, {110, 115, 120, 200, 205}, {125, 130 ,135, 210, 215}, {140, 145, 150, 220, 225}};
+   // represents how fast the birds fly
+   private int birdSpeed = 5;
 
    public MotionParallax() {
       // Set the title.
@@ -59,25 +61,10 @@ public class MotionParallax extends JFrame {
       addMouseListener(new MyMouseListener());
       addMouseMotionListener(new MyMouseMotionListener());
 
-      // Build the panels.
-      
-      //grassPanel = new JPanel();
-      //grassLabel = new JLabel("");
+      // starts the timer
+      timer = new Timer(delay, this);
+      timer.start();
 
-      // Add the panels to the content pane.
-      //add(grassPanel, BorderLayout.SOUTH);
-      
-      //grassPanel.add(grassLabel);
-      
-      // Read the image file into an ImageIcon object.
-      //ImageIcon landscape = new ImageIcon("nicelandscape.png");
-      
-      // Display the image in the label.
-      //grassLabel.setIcon(landscape);
-      //grassLabel.setText(null);
-
-      // Pack the frame again to accomodate the 
-      // new size of the label.
       pack();
       setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
       setVisible(true);
@@ -90,7 +77,6 @@ public class MotionParallax extends JFrame {
    public void paint(Graphics g) {
       // Call the superclass's paint method.
       super.paint(g);
-      
 
       // Draw a rectangle
       int grassWidth = 2000;
@@ -127,7 +113,7 @@ public class MotionParallax extends JFrame {
       g.setColor(birdColor);
       for (int i = 0; i < birds.length; i++) {
          for (int j = 0; j < 3; j++) {
-            birds[i][j] += 10;   // how fast the birds fly across the sky
+            birds[i][j] += birdSpeed;   // how fast the birds fly across the sky
          }
          if (birds[i][0] > 700) {
             birds[i][0] = -10;
@@ -172,6 +158,11 @@ public class MotionParallax extends JFrame {
       
    }
 
+   public void actionPerformed(ActionEvent e) {
+      // will run when the timer fires
+      repaint();
+   }
+
    private class MyMouseListener implements MouseListener {
       public void mousePressed(MouseEvent e) {
          // print out the current mouse coordinates
@@ -203,12 +194,6 @@ public class MotionParallax extends JFrame {
       public void mouseMoved(MouseEvent e) {
     	   currentX = e.getX() + (WINDOW_WIDTH/2);
     	   currentY = e.getY() + (WINDOW_HEIGHT/2);
-    	   try {
-			   TimeUnit.MILLISECONDS.sleep(15);
-    	   } catch (InterruptedException e1) {
-			   e1.printStackTrace();
-    	   }
-    	   repaint();
       }
    }
    public static void main(String[] args) {
