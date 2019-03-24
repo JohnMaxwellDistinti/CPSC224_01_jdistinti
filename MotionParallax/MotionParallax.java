@@ -5,6 +5,8 @@ Names: John Maxwell Distinti
 ********************/
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.IntBinaryOperator;
+
 import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
@@ -47,6 +49,15 @@ public class MotionParallax extends JFrame implements ActionListener {
    // represents how fast the birds fly
    private int birdSpeed = 5;
 
+   private int []testCircle = {40, 60, 30, 30};
+   private Color red = new Color(255, 0, 0);
+   private Color green = new Color(0, 255, 0);
+   private Color blue = new Color(0, 0, 255);
+   private Color current = blue;
+
+   // This shows the current positions of the mouse
+   private String mouseCoords = "(x = 50, y = 50)";
+
    public MotionParallax() {
       // Set the title.
       setTitle("Motion Parallax");
@@ -77,7 +88,6 @@ public class MotionParallax extends JFrame implements ActionListener {
    public void paint(Graphics g) {
       // Call the superclass's paint method.
       super.paint(g);
-      
 
       // Draw a rectangle
       int grassWidth = 2000;
@@ -101,7 +111,7 @@ public class MotionParallax extends JFrame implements ActionListener {
 
       int mountainBackXValues[] = {100, 350, 600};
       int mountainBackYValues[] = {575, 200, 575};
-	   int points = 3;
+      int points = 3;
       
       
       g.setColor(skyColor);
@@ -109,6 +119,10 @@ public class MotionParallax extends JFrame implements ActionListener {
       
       g.setColor(sunColor);
       g.fillOval(550+(currentX/sunParallax), 50+(currentY/sunParallax), 100, 100);
+
+      // draw the circle
+      g.setColor(current);
+      g.fillOval(testCircle[0], testCircle[1], testCircle[2], testCircle[3]);
 
       // draw the bird
       g.setColor(birdColor);
@@ -126,6 +140,10 @@ public class MotionParallax extends JFrame implements ActionListener {
             g.drawLine(birds[i][1], birds[i][4], birds[i][2], birds[i][3]);
          }
       }
+
+      // draws out the current coordinates of the mouse
+      g.setColor(birdColor);
+      g.drawString(mouseCoords, 10, 40);
 
       for (int i = 0; i < 3; i++) {
          mountainLeftXValues[i] += currentX / mountainLeftParallax;
@@ -171,6 +189,7 @@ public class MotionParallax extends JFrame implements ActionListener {
       public void mouseClicked(MouseEvent e) {
          // print out the current mouse coordinates
          System.out.printf("(x = %d, y = %d)\n", e.getX(), e.getY());
+         current = green;
       }
 
       public void mouseReleased(MouseEvent e) {
@@ -178,22 +197,23 @@ public class MotionParallax extends JFrame implements ActionListener {
       }
 
       public void mouseEntered(MouseEvent e) {
-
+         current = red;
       }
 
       public void mouseExited(MouseEvent e) {
-
+         current = blue;
       }
    }
 
    private class MyMouseMotionListener implements MouseMotionListener {
       public void mouseDragged(MouseEvent e) {
-         currentX = e.getX() + (WINDOW_WIDTH/2);
-    	   currentY = e.getY() + (WINDOW_HEIGHT/2);
+         // parallax movement happens when the mouse is dragged
+         currentX = e.getX() + (WINDOW_WIDTH / 2);
+    	   currentY = e.getY() + (WINDOW_HEIGHT / 2);
       }
 
       public void mouseMoved(MouseEvent e) {
-
+         mouseCoords = "(x = " + e.getX() + " y = " + e.getY() + ")";
       }
    }
    public static void main(String[] args) {
