@@ -18,6 +18,13 @@ import javax.swing.*;
 */
 
 public class MotionParallax extends JFrame {
+	
+   private int sunParallax = 350;
+   private int mountainBackParallax = 200;
+   private int mountainRightParallax = 150;
+   private int mountainLeftParallax = 100;
+   private int landscapeParallax = 15;
+   
    private int delay = 30;
    private Timer timer;
    private JPanel grassPanel;     // To hold the labeln
@@ -106,7 +113,7 @@ public class MotionParallax extends JFrame {
       g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
       
       g.setColor(sunColor);
-      g.fillOval(550+(currentX/50), 50+(currentY/50), 100, 100);
+      g.fillOval(550+(currentX/sunParallax), 50+(currentY/sunParallax), 100, 100);
 
       // Back Mountain
       g.setColor(mountainBackColor);
@@ -121,13 +128,13 @@ public class MotionParallax extends JFrame {
       g.fillPolygon(mountainLeftXValues, mountainLeftYValues, points);
       
       g.setColor(grassColor);
-      g.fillRect(-500, WINDOW_HEIGHT-(grassHeight/2), grassWidth, grassHeight);
+      g.fillRect(-500+(currentX/landscapeParallax), WINDOW_HEIGHT-(grassHeight/2)+(currentY/mountainBackParallax), grassWidth, grassHeight);
       
       g.setColor(barkColor);
-      g.fillRect(475,500,20,treeHeight);
+      g.fillRect(475+(currentX/landscapeParallax),500+(currentY/mountainLeftParallax),20,treeHeight);
       
       g.setColor(treeColor);
-      g.fillOval(427, WINDOW_HEIGHT-treeHeight-foliageSize, foliageSize, foliageSize+25);	
+      g.fillOval(427+(currentX/landscapeParallax), WINDOW_HEIGHT-treeHeight-foliageSize+(currentY/mountainLeftParallax), foliageSize, foliageSize+25);	
       
    }
 
