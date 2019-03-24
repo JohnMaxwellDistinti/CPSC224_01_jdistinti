@@ -22,7 +22,7 @@ public class MotionParallax extends JFrame implements ActionListener {
    private int mountainLeftParallax = 50;
    private int landscapeParallax = 5;
    
-   private int delay = 30;
+   private int delay = 40;
    private Timer timer;
    private int WINDOW_WIDTH = 700;
    private int WINDOW_HEIGHT = 700;
@@ -179,8 +179,6 @@ public class MotionParallax extends JFrame implements ActionListener {
       }
 
       public void mouseClicked(MouseEvent e) {
-         // print out the current mouse coordinates
-         System.out.printf("(x = %d, y = %d)\n", e.getX(), e.getY());
          current = green;
       }
 
