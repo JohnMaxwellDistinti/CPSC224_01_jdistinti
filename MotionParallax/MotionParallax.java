@@ -143,7 +143,7 @@ public class MotionParallax extends JFrame implements ActionListener {
 
       // draws out the current coordinates of the mouse
       g.setColor(birdColor);
-      g.drawString(mouseCoords, 10, 40);
+      g.drawString(mouseCoords, 10, 150);
 
       for (int i = 0; i < 3; i++) {
          mountainLeftXValues[i] += currentX / mountainLeftParallax;
@@ -207,13 +207,13 @@ public class MotionParallax extends JFrame implements ActionListener {
 
    private class MyMouseMotionListener implements MouseMotionListener {
       public void mouseDragged(MouseEvent e) {
-         // parallax movement happens when the mouse is dragged
-         currentX = e.getX() + (WINDOW_WIDTH / 2);
-    	   currentY = e.getY() + (WINDOW_HEIGHT / 2);
+         mouseCoords = "(x = " + e.getX() + " y = " + e.getY() + ")";
       }
 
       public void mouseMoved(MouseEvent e) {
-         mouseCoords = "(x = " + e.getX() + " y = " + e.getY() + ")";
+         // parallax movement happens when the mouse is moved
+         currentX = e.getX() + (WINDOW_WIDTH / 2);
+    	   currentY = e.getY() + (WINDOW_HEIGHT / 2);
       }
    }
    public static void main(String[] args) {
