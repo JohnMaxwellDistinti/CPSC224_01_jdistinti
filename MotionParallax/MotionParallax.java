@@ -35,6 +35,10 @@ public class MotionParallax extends JFrame {
    private int WINDOW_HEIGHT = 700;
    private int currentX = 0;
    private int currentY = 0;
+
+   private int leftWing = 80;
+   private int birdMiddle = 85;
+   private int rightWing = 90;
    
 
    public MotionParallax(){
@@ -98,6 +102,7 @@ public class MotionParallax extends JFrame {
       Color grassColor = new Color(46,198,25);
       Color treeColor = new Color(46, 100, 25);
       Color barkColor = new Color(66, 39, 39);
+      Color birdColor = new Color(0,0,0);
       int mountainLeftXValues[] = {-90, 175, 440};
       int mountainLeftYValues[] = {575, 300, 575};
 
@@ -114,6 +119,19 @@ public class MotionParallax extends JFrame {
       
       g.setColor(sunColor);
       g.fillOval(550+(currentX/sunParallax), 50+(currentY/sunParallax), 100, 100);
+
+      // draw the bird
+      leftWing += 2;
+      rightWing += 2;
+      birdMiddle += 2;
+      if (leftWing > 700) {
+         rightWing = 0;
+         birdMiddle = -5;
+         leftWing = -10;
+      }
+      g.setColor(birdColor);
+      g.drawLine(leftWing, 180, birdMiddle, 185);
+      g.drawLine(birdMiddle, 185, rightWing, 180);
 
       for (int i = 0; i < 3; i++) {
          mountainLeftXValues[i] += currentX / mountainLeftParallax;
