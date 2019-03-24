@@ -1,26 +1,17 @@
-/***************
-MotionParallax.java
-Due Date: 3/23/19
-Names: John Maxwell Distinti
-********************/
-
-import java.util.concurrent.TimeUnit;
-import java.util.function.IntBinaryOperator;
+// John Maxwell Distinti and Kevin Mattappally
+// GitHub repository: https://github.com/JohnMaxwellDistinti/CPSC224_01_jdistinti
+// Simulates the concept of motion parallax with the use of mouse listeners. Contains
+// mouse motion listeners to simulate the parallax, contains a timer to time when the 
+// graphics gets repainted, and contains mouse listeners for other aspects
+// Depicts a landscape with a sky, three mountains, a grassy field, and a tree.
 
 import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
-
 import javax.swing.*;
 
-/**
-   This class demonstrates how to use an ImageIcon
-   and a JLabel to display an image.
-*/
-
 public class MotionParallax extends JFrame implements ActionListener {
-   
    // represents parallax values of each aspect of the graphic
    // the farther away the object in the frame, the larger the 
    // parallax value. We also made X values increase at a larger rate
@@ -33,10 +24,6 @@ public class MotionParallax extends JFrame implements ActionListener {
    
    private int delay = 30;
    private Timer timer;
-   private JPanel grassPanel;     // To hold the labeln
-   private JPanel skyboxPanel;     // To hold the label
-   private JLabel grassLabel;     // To show an image
-   private JLabel skyboxLabel;     // To show an image
    private int WINDOW_WIDTH = 700;
    private int WINDOW_HEIGHT = 700;
    private int currentX = 0;
@@ -89,7 +76,9 @@ public class MotionParallax extends JFrame implements ActionListener {
       // Call the superclass's paint method.
       super.paint(g);
 
-      // Draw a rectangle
+      // initializes all the aspects of what we need
+      // to initially draw onto the frame. Includes
+      // colors, coordinates, heights, and widths
       int grassWidth = 2000;
       int grassHeight = 300;
       int treeHeight = 150;
@@ -105,26 +94,25 @@ public class MotionParallax extends JFrame implements ActionListener {
       Color birdColor = new Color(0, 0, 0);
       int mountainLeftXValues[] = {-90, 175, 440};
       int mountainLeftYValues[] = {575, 300, 575};
-
       int mountainRightXValues[] = {260, 525, 790};
       int mountainRightYValues[] = {575, 300, 575};
-
       int mountainBackXValues[] = {100, 350, 600};
       int mountainBackYValues[] = {575, 200, 575};
       int points = 3;
       
-      
+      // draws the sky
       g.setColor(skyColor);
       g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
       
+      // draws the sun
       g.setColor(sunColor);
       g.fillOval(550+(currentX/sunParallax), 50+(currentY/sunParallax), 100, 100);
 
-      // draw the circle
+      // draws the circle
       g.setColor(current);
       g.fillOval(testCircle[0], testCircle[1], testCircle[2], testCircle[3]);
 
-      // draw the bird
+      // draws all the birds going across the sky
       g.setColor(birdColor);
       for (int i = 0; i < birds.length; i++) {
          for (int j = 0; j < 3; j++) {
@@ -145,6 +133,7 @@ public class MotionParallax extends JFrame implements ActionListener {
       g.setColor(birdColor);
       g.drawString(mouseCoords, 10, 150);
 
+      // calculates the parallax values for all the mountains
       for (int i = 0; i < 3; i++) {
          mountainLeftXValues[i] += currentX / mountainLeftParallax;
          mountainLeftYValues[i] += currentY/ mountainLeftParallax;
@@ -154,24 +143,27 @@ public class MotionParallax extends JFrame implements ActionListener {
          mountainBackYValues[i] += currentY / mountainBackParallax;
       }
 
-      // Back Mountain
+      // draws out the mountain at the back
       g.setColor(mountainBackColor);
       g.fillPolygon(mountainBackXValues, mountainBackYValues, points);
 
-      // Right Mountain
+      // draws out the mountain on the right
       g.setColor(mountainRightColor);
       g.fillPolygon(mountainRightXValues, mountainRightYValues, points);
       
-      // Left Mountain
+      // draws out the mountain on the left
       g.setColor(mountainLeftColor);
       g.fillPolygon(mountainLeftXValues, mountainLeftYValues, points);
       
+      // draws out the grass
       g.setColor(grassColor);
       g.fillRect(-500+(currentX/landscapeParallax), WINDOW_HEIGHT-(grassHeight/2)+(currentY/mountainBackParallax), grassWidth, grassHeight);
       
+      // draws out the bark of the tree
       g.setColor(barkColor);
       g.fillRect(475+(currentX/landscapeParallax),500+(currentY/mountainLeftParallax),20,treeHeight);
       
+      // draws out the leaves of the tree
       g.setColor(treeColor);
       g.fillOval(427+(currentX/landscapeParallax), WINDOW_HEIGHT-treeHeight-foliageSize+(currentY/mountainLeftParallax), foliageSize, foliageSize+25);	
    }
