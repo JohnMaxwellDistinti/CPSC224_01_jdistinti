@@ -20,8 +20,8 @@ import javax.swing.*;
 public class MotionParallax extends JFrame {
 	
    private int sunParallax = 350;
-   private int mountainBackParallax = 200;
-   private int mountainRightParallax = 150;
+   private int mountainBackParallax = 300;
+   private int mountainRightParallax = 200;
    private int mountainLeftParallax = 100;
    private int landscapeParallax = 15;
    
@@ -114,6 +114,15 @@ public class MotionParallax extends JFrame {
       
       g.setColor(sunColor);
       g.fillOval(550+(currentX/sunParallax), 50+(currentY/sunParallax), 100, 100);
+
+      for (int i = 0; i < 3; i++) {
+         mountainLeftXValues[i] += currentX / mountainLeftParallax;
+         mountainLeftYValues[i] += currentY/ mountainLeftParallax;
+         mountainRightXValues[i] += currentX / mountainRightParallax;
+         mountainRightYValues[i] += currentY / mountainRightParallax;
+         mountainBackXValues[i] += currentX / mountainBackParallax;
+         mountainBackYValues[i] += currentY / mountainBackParallax;
+      }
 
       // Back Mountain
       g.setColor(mountainBackColor);
