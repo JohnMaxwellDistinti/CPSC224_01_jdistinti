@@ -36,12 +36,15 @@ public class MotionParallax extends JFrame {
    private int currentX = 0;
    private int currentY = 0;
 
+   // array of bird coordinates 
+   private int [][]birds = {{80, 85, 90}, {95, 100, 105}, {110, 115, 120}, {125, 130 ,135}, {140, 145, 150}};
+
    private int leftWing = 80;
    private int birdMiddle = 85;
    private int rightWing = 90;
    
 
-   public MotionParallax(){
+   public MotionParallax() {
       // Set the title.
       setTitle("Motion Parallax");
 
@@ -83,8 +86,7 @@ public class MotionParallax extends JFrame {
       The buildImagePanel method adds a label to a panel.
    */
 
-   public void paint(Graphics g)
-   {
+   public void paint(Graphics g) {
       // Call the superclass's paint method.
       super.paint(g);
       
@@ -121,17 +123,23 @@ public class MotionParallax extends JFrame {
       g.fillOval(550+(currentX/sunParallax), 50+(currentY/sunParallax), 100, 100);
 
       // draw the bird
-      leftWing += 2;
-      rightWing += 2;
-      birdMiddle += 2;
-      if (leftWing > 700) {
-         rightWing = 0;
-         birdMiddle = -5;
-         leftWing = -10;
-      }
       g.setColor(birdColor);
-      g.drawLine(leftWing, 180, birdMiddle, 185);
-      g.drawLine(birdMiddle, 185, rightWing, 180);
+      for (int i = 0; i < birds.length; i++) {
+         for (int j = 0; j < birds[i].length; j++) {
+            birds[i][j] += 10;   // how fast the birds fly across the sky
+         }
+         for (int j = 0; j < birds[i].length; j++) {
+            if (birds[i][0] > 700) {
+               birds[i][0] = -10;
+               birds[i][1] = -5;
+               birds[i][2] = 0;
+            }
+         }
+         for (int j = 0; j < birds[i].length; j++) {
+            g.drawLine(birds[i][0], 180, birds[i][1], 185);
+            g.drawLine(birds[i][1], 185, birds[i][2], 180);
+         }
+      }
 
       for (int i = 0; i < 3; i++) {
          mountainLeftXValues[i] += currentX / mountainLeftParallax;
@@ -167,10 +175,8 @@ public class MotionParallax extends JFrame {
 
    private class MyMouseListener implements MouseListener {
       public void mousePressed(MouseEvent e) {
-         // Get the mouse cursor coordinates.
-         /*currentX = e.getX();
-         currentY = e.getY();
-         System.out.printf("(x = %d, y = %d)\n", currentX, currentY);*/
+         // print out the current mouse coordinates
+         System.out.printf("(x = %d, y = %d)\n", e.getX(), e.getY());
       }
 
       public void mouseClicked(MouseEvent e) {
@@ -206,8 +212,7 @@ public class MotionParallax extends JFrame {
     	  repaint();
       }
    }
-   public static void main(String[] args)
-   {
+   public static void main(String[] args) {
       new MotionParallax();
    }
 }
