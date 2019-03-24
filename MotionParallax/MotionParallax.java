@@ -77,6 +77,7 @@ public class MotionParallax extends JFrame implements ActionListener {
    public void paint(Graphics g) {
       // Call the superclass's paint method.
       super.paint(g);
+      
 
       // Draw a rectangle
       int grassWidth = 2000;
@@ -91,7 +92,7 @@ public class MotionParallax extends JFrame implements ActionListener {
       Color grassColor = new Color(46,198,25);
       Color treeColor = new Color(46, 100, 25);
       Color barkColor = new Color(66, 39, 39);
-      Color birdColor = new Color(0,0,0);
+      Color birdColor = new Color(0, 0, 0);
       int mountainLeftXValues[] = {-90, 175, 440};
       int mountainLeftYValues[] = {575, 300, 575};
 
@@ -155,7 +156,6 @@ public class MotionParallax extends JFrame implements ActionListener {
       
       g.setColor(treeColor);
       g.fillOval(427+(currentX/landscapeParallax), WINDOW_HEIGHT-treeHeight-foliageSize+(currentY/mountainLeftParallax), foliageSize, foliageSize+25);	
-      
    }
 
    public void actionPerformed(ActionEvent e) {
@@ -165,16 +165,16 @@ public class MotionParallax extends JFrame implements ActionListener {
 
    private class MyMouseListener implements MouseListener {
       public void mousePressed(MouseEvent e) {
+         // implementation not needed
+      }
+
+      public void mouseClicked(MouseEvent e) {
          // print out the current mouse coordinates
          System.out.printf("(x = %d, y = %d)\n", e.getX(), e.getY());
       }
 
-      public void mouseClicked(MouseEvent e) {
-
-      }
-
       public void mouseReleased(MouseEvent e) {
-
+         // implementation not needed
       }
 
       public void mouseEntered(MouseEvent e) {
@@ -188,12 +188,12 @@ public class MotionParallax extends JFrame implements ActionListener {
 
    private class MyMouseMotionListener implements MouseMotionListener {
       public void mouseDragged(MouseEvent e) {
-         
+         currentX = e.getX() + (WINDOW_WIDTH/2);
+    	   currentY = e.getY() + (WINDOW_HEIGHT/2);
       }
 
       public void mouseMoved(MouseEvent e) {
-    	   currentX = e.getX() + (WINDOW_WIDTH/2);
-    	   currentY = e.getY() + (WINDOW_HEIGHT/2);
+
       }
    }
    public static void main(String[] args) {
